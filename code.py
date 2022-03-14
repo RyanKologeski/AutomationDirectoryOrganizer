@@ -8,7 +8,7 @@ sg.theme('Reddit')
 layout = [
     [
         [sg.Text('Select a folder')],
-        [sg.Input(size=(25, 1), key='file'),
+        [sg.Input(size=(25, 1), border_width=2, key='file'),
          sg.FolderBrowse('Select Folder')],
         [sg.Button('Organize folder')],
         [sg.Output(size=(40, 5), key='output')],
@@ -39,10 +39,10 @@ while True:
                 # checks if the file is of type image
                 if((corta[-1] == 'png') or (corta[-1] == 'jpg') or (corta[-1] == 'jpeg') or
                         (corta[-1] == 'svg') or (corta[-1] == 'bmp') or (corta[-1] == 'gif')):
-                    if not os.path.isdir(f'{path}\Files imagem'):
-                        os.makedirs(f'{path}\Files imagem')
+                    if not os.path.isdir(f'{path}\Files image'):
+                        os.makedirs(f'{path}\Files image')
                     shutil.move(f'{path}\{file}',
-                                f'{path}\Files imagem')
+                                f'{path}\Files image')
                 # Checks other types files
                 else:
                     if not os.path.isdir(f'{path}\Files {corta[-1]}'):
