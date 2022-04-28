@@ -1,3 +1,4 @@
+from genericpath import exists
 import PySimpleGUI as sg
 import os
 import shutil
@@ -41,12 +42,21 @@ while True:
                         (corta[-1] == 'svg') or (corta[-1] == 'bmp') or (corta[-1] == 'gif')):
                     if not os.path.isdir(f'{path}\Files image'):
                         os.makedirs(f'{path}\Files image')
-                    shutil.move(f'{path}\{file}',
-                                f'{path}\Files image')
+                    if(os.path.exists(f'{path}\Files image\{file}')):
+                        print(
+                            f'\n°The file {file} was not moved because it already exists in the folder Files image')
+                    else:
+                        shutil.move(f'{path}\{file}',
+                                    f'{path}\Files image')
                 # Checks other types files
                 else:
                     if not os.path.isdir(f'{path}\Files {corta[-1]}'):
                         os.makedirs(f'{path}\Files {corta[-1]}')
-                    shutil.move(f'{path}\{file}',
-                                f'{path}\Files {corta[-1]}')
+                    if not exists(file in path):
+                        print(
+                            f'\n°The file {file} was not moved because it already exists in the folder: Files {corta[-1]}')
+
+                    else:
+                        shutil.move(f'{path}\{file}',
+                                    f'{path}\Files {corta[-1]}')
     sg.popup('Your folder is organized :)')
